@@ -25,10 +25,8 @@ namespace ai {
 				);
 				
 			this->charge = atof(percept->GetAtom("CHARGE").GetValue().c_str());
-			
-			std::cout << percept->GetAtom("BASE").GetValue() << std::endl;
 			this->baseId = atoi(percept->GetAtom("BASE").GetValue().c_str());
-				
+			
 			const char* goalPercept = percept->GetAtom("GOAL_LOC").GetValue().c_str();
 			this->ParseGoalLoc(goalPercept);
 		

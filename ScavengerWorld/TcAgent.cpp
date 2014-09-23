@@ -185,7 +185,7 @@ namespace ai
 					TcLightAction* action = dynamic_cast<TcLightAction*>((*it)->GetAction());
 				
 					if (action) {
-						std::cout << "Pushing action: " << action->Type << std::endl;
+						std::cout << "Pushing action: " << action->Name << std::endl;
 						actionQueue.push(action->Type);
 					}
 				}
@@ -270,7 +270,7 @@ namespace ai
 	
 			std::cout << "Searching" << std::endl;
 			if (search->Search()) {
-				std::cout << "Found goal." << std::endl;
+				std::cout << "Found base." << std::endl;
 	
 				std::list<ai::Search::Node*>* solution = search->GetSolution().GetList();
 				std::list<ai::Search::Node*>::const_iterator it;
@@ -279,7 +279,7 @@ namespace ai
 					TcLightAction* action = dynamic_cast<TcLightAction*>((*it)->GetAction());
 			
 					if (action) {
-						std::cout << "Pushing action: " << action->Type << std::endl;
+						std::cout << "Pushing action: " << action->Name << std::endl;
 						actionQueue.push(action->Type);
 					}
 				}
@@ -309,25 +309,27 @@ namespace ai
 				ai::Scavenger::Action *action = new ai::Scavenger::Action;
 				TcAction::T actionT = actionQueue.front();
 			
-				std::cout << "Taking action: " << actionT << std::endl;
-			
 				switch (actionT) {
 					case TcAction::North:
+						std::cout << "Taking action: North" << std::endl;
 						action->SetCode(ai::Scavenger::Action::GO_NORTH);
 						break;
 					case TcAction::South:
+						std::cout << "Taking action: South" << std::endl;
 						action->SetCode(ai::Scavenger::Action::GO_SOUTH);
 						break;
 					case TcAction::West:
+						std::cout << "Taking action: West" << std::endl;
 						action->SetCode(ai::Scavenger::Action::GO_WEST);
 						break;
 					case TcAction::East:
+						std::cout << "Taking action: East" << std::endl;
 						action->SetCode(ai::Scavenger::Action::GO_EAST);
 						break;
-					case TcAction::Quit:
-						action->SetCode(ai::Scavenger::Action::QUIT);
-						break;
 					default:
+					case TcAction::Quit:
+						std::cout << "Taking action: Quit" << std::endl;
+						action->SetCode(ai::Scavenger::Action::QUIT);
 						break;
 				}
 				actionQueue.pop();
